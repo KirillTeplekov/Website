@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color:#990000;">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/index">
+                <img alt="Brand" src=static/images/brand.png>
+                "В десяточку"
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Навигация
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        {% for key, value in link_dict.items() %}
+                        {% if key != name %}
+                            <a class="dropdown-item" href="{{ '/' + key }}">{{ value }}</a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+                <li>
+                    {% if session['username'] %}
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/administration">Администрирование</a>
+                        </div>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+        {% if "username" in session %}
+        <ul class="nav justify-content-end mr-auto">
+            <div class="dropdown">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" ar="">
+                    {{ session["username"] }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/administration">{{ session["username"] }}</a>
+                    <a class="dropdown-item" href="/logout">Выйти</a>
+                </div>
+            </div>
+        </ul>
+        {% else %}
+        <ul class="nav justify-content-end mr-auto">
+            <div>
+                <a href="/registration" class="btn btn-outline-danger stretched-link">Зарегистрироваться</a>
+                <a href="/login" class="btn btn-danger stretched-link">Войти</a>
+            </div>
+        </ul>
+        {% endif %}
+    </nav>
+</header>
+<!-- Begin page content -->
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+<hr>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h4 class="display-4">Школьная газета "В десяточку"</h4>
+    </div>
+</div>
+</body>
+</html>

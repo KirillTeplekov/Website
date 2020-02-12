@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center">
+        <h1>Загрузить выпуск газеты</h1>
+        <form action="" method="post" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name.label }}<br>
+                {{ form.name }}<br>
+                {% for error in form.name.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p align="center">
+                {{ form.file.label }}<br>
+                {{ form.file(class_='button') }}<br>
+                {% for error in form.file.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p align="center">
+                {{ form.cover.label }}<br>
+                {{ form.cover(class_='button') }}<br>
+                {% for error in form.cover.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.description.label }}<br>
+                {{ form.description }}<br>
+                {% for error in form.description.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+{% endblock %}

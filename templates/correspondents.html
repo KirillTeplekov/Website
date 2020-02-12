@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p></p>
+<div>
+    {% if session['username'] %}
+    <a href="/add_correspondent" class="btn btn-info btn-lg btn-block">Добавить корреспондента</a>
+    <p></p>
+    {% endif %}
+    {% for i in range(0, length, 3) %}
+        <div class="card-deck">
+            {% for j in range(3) %}
+                    <div class="card">
+                        <img src="{{ correspondents[i + j].photo }}" class="card-img-top" alt="Изображение отсутствует">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ correspondents[i + j].name + ' ' + correspondents[i + j].surname }}</h5>
+                            {% if correspondents[i + j].description %}
+                                <p class="card-text">{{ correspondents[i + j].description }}</p>
+                            {% endif %}
+                            <p class="card-text">
+                                <small class="text-muted">Корреспондент</small>
+                            </p>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <p></p>
+    {% endfor %}
+</div>
+{% endblock %}

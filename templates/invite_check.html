@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center">
+        <h1>Регистрация</h1>
+        <form action="" method="post" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.invite.label }}<br>
+                {{ form.invite }}<br>
+                {% for error in form.invite.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(class_='button') }}</p>
+        </form>
+    </div>
+{% endblock %}

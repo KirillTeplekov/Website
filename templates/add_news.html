@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div align="center">
+        <h1>Добавить новость</h1>
+        <form action="" method="post" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.heading.label }}<br>
+                {{ form.heading }}<br>
+                {% for error in form.heading.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p align="center">
+                {{ form.text_file.label }}<br>
+                {{ form.text_file(class_='button') }}<br>
+                {% for error in form.text_file.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p align="center">
+                {{ form.image.label }}<br>
+                {{ form.image(class_='button') }}<br>
+                {% for error in form.image.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+{% endblock %}

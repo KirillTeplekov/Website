@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p></p>
+<div>
+    {% if session['username'] %}
+        <a href="/add_issue" class="btn btn-info btn-lg btn-block">Добавить выпуск</a>
+        <p></p>
+    {% endif %}
+    {% for i in range(0, length, 3) %}
+        <div class="card-deck">
+            {% for j in range(3) %}
+                <div class="card text-white bg-info" style="width: 18rem;">
+                    <img src="{{ issues[i + j].cover }}" class="card-img-top" alt="Обложка">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Выпуск #{}.'.format(issues[i + j].id) }}</h5>
+                        <p class="card-text">{{ issues[i + j].description }}</p>
+                        <a href="{{ url_for('download', filename=issues[i + j].filename.split('/')[-1]) }}" class="btn btn-primary">Скачать</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
